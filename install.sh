@@ -106,10 +106,11 @@ ${BOLD}#########################################################################
 
     # lxdm theme
     sudo cp -f lxdm/lxdm.conf /etc/lxdm/
-    sduo cp -rf lxdm/lxdm-theme/* /usr/share/lxdm/themes/
+    sudo cp -rf lxdm/lxdm-theme/* /usr/share/lxdm/themes/
 
     # copies dots to home directory
-    cp -f dots/.fehbg $HOME
+    cp -f dots/.fehbg \
+	  dots/.dmrc $HOME
 
     # copies qtile configuration
     cp -r qtile/ $HOME/.config
