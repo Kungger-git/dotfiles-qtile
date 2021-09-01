@@ -80,9 +80,9 @@ keys = [
 
     Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 
     # custom keybindings made by me: @KungPaoChick/@Kungger
+    Key([mod], "d", lazy.spawn('dmenu_run'), desc="Launches dmenu"),
     Key([mod, "shift"], "w", lazy.spawn('firefox'), desc="Launches Firefox Web Browser"),
     Key([mod, "shift"], "f", lazy.spawn('pcmanfm'), desc="Launches Pcmanfm File Manager")
 ]
@@ -142,7 +142,6 @@ screens = [
             [
                 widget.GroupBox(),
                 widget.WindowName(), 
-                widget.Prompt(),
                 widget.Chord(
                     chords_colors={
                         'launch': ("#ff0000", "#ffffff"),
@@ -152,8 +151,8 @@ screens = [
                 #widget.TextBox("myQtile", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.CurrentLayout(),
-                widget.Systray(),
                 widget.Clock(format=' %b %d-%Y | %I:%M:%S %p'),
+                widget.Systray()
             ],
             24,
         ),
@@ -169,14 +168,34 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
+#
+# assign apps to groups/workspace
+#
+@hook.subscribe.client_new
+def assign_app_group(client):
+    d = {}
+
+    # assign deez apps
+    d[group_names[0][0]] = ['Alacritty', 'xfce4-terminal']
+    d[group_names[1][0]] = ['Navigator', 'discord']
+    d[group_names[2][0]] = ['pcmanfm']
+    d[group_names[3][0]] = ['code', 'geany']
+    d[group_names[4][0]] = ['vlc', 'obs', 'mpv', 'mplayer', 'lxmusic', 'gimp']
+    d[group_names[5][0]] = ['gparted', 'lxtask', 'lxrandr', 'arandr', 'pavucontrol', 'xfce4-settings-manager']
+
+    wm_class = client.window.get_wm_class()[0]
+    for i in range(len(d)):
+        if wm_class in list(d.values())[i]:
+            group = list(d.keys())[i]
+            client.togroup(group)
+            client.group.cmd_toscreen(toggle=False)
+
 
 main = None
-
 @hook.subscribe.startup_once
 def start_once():
     start_script = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([start_script])
-
 
 @hook.subscribe.startup
 def start_always():
