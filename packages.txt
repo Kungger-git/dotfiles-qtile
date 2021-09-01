@@ -1,6 +1,10 @@
+adapta-gtk-theme
+alacritty
 base-devel
+dmenu
 feh
 picom
 python-pip
+qtile
 xdg-user-dirs
 xorg
