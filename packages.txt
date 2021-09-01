@@ -3,6 +3,7 @@ alacritty
 base-devel
 dmenu
 feh
+lxdm-gtk3
 picom
 python-pip
 qtile
