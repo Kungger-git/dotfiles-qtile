@@ -1,0 +1,12 @@
+archlinux-wallpaper
+bpytop
+discord
+dmenu
+firefox
+geany
+gtop
+neofetch
+pcmanfm
+udiskie
+wget
+xfce4-power-manager
