@@ -109,6 +109,16 @@ ${BOLD}#########################################################################
     # copies qtile configuration
     cp -r qtile/ $HOME/.config
 
+    # installs fonts for bar
+    FDIR="$HOME/.local/share/fonts"
+    echo -e "\n${GREEN}${BOLD}[*] ${RESET}Installing fonts..."
+    if [[ -d "$FDIR" ]]; then
+        cp -rf fonts/* "$FDIR"
+    else
+        mkdir -p "$FDIR"
+        cp -rf fonts/* "$FDIR"
+    fi
+
 }
 
 main "@"
