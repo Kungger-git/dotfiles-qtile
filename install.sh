@@ -110,10 +110,10 @@ ${BOLD}#########################################################################
 
     # copies dots to home directory
     cp -f dots/.fehbg \
-	  dots/.dmrc $HOME
+	      dots/.dmrc $HOME
 
-    # copies qtile configuration
-    cp -r qtile/ $HOME/.config
+    # copies configurations
+    cp -rf configs/* $HOME/.config/
 
     # installs fonts for bar
     FDIR="$HOME/.local/share/fonts"
