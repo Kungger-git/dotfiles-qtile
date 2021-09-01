@@ -26,7 +26,9 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+import os
+import subprocess
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -152,7 +154,6 @@ screens = [
                 widget.CurrentLayout(),
                 widget.Systray(),
                 widget.Clock(format=' %b %d-%Y | %I:%M:%S %p'),
-                widget.QuickExit(),
             ],
             24,
         ),
@@ -168,11 +169,26 @@ mouse = [
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
+
+main = None
+
+@hook.subscribe.startup_once
+def start_once():
+    start_script = os.path.expanduser("~/.config/qtile/autostart.sh")
+    subprocess.call([start_script])
+
+
+@hook.subscribe.startup
+def start_always():
+    # fixes the cursor
+    subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])
+
+
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: List
 follow_mouse_focus = True
 bring_front_click = False
-cursor_warp = True
+cursor_warp = False
 floating_layout = layout.Floating(float_rules=[
     # Run the utility of `xprop` to see the wm class and name of an X client.
     *layout.Floating.default_float_rules,
