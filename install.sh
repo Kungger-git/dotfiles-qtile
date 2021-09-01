@@ -103,6 +103,9 @@ ${BOLD}#########################################################################
     # generate user directories
     xdg-user-dirs-update
 
+    # copies dots to home directory
+    cp -f dots/.fehbg $HOME
+
     # copies qtile configuration
     cp -r qtile/ $HOME/.config
 

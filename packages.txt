@@ -1,4 +1,5 @@
 base-devel
+feh
 picom
 python-pip
 xdg-user-dirs
