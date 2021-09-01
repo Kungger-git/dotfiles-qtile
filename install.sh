@@ -98,10 +98,15 @@ ${BOLD}#########################################################################
         sudo pacman -S --needed --noconfirm - < recommended_pkgs.txt
     fi
 
-
+    # enable display manager
+    sudo systemctl enable lxdm.service
 
     # generate user directories
     xdg-user-dirs-update
+
+    # lxdm theme
+    sudo cp -f lxdm/lxdm.conf /etc/lxdm/
+    sduo cp -rf lxdm/lxdm-theme/* /usr/share/lxdm/themes/
 
     # copies dots to home directory
     cp -f dots/.fehbg $HOME
