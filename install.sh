@@ -22,6 +22,20 @@ set_color() {
 main() {
     set_color
 
+    # creates srcs folder
+    if [[ ! -d $HOME/.srcs/ ]]; then
+	    mkdir -p $HOME/.srcs/
+    fi
+    
+    # replaces pacman.conf
+    sudo cp -f systemfiles/pacman.conf /etc/
+
+    # adds insults to sudoers.d
+    sudo cp -f systemfiles/01_pw_feedback /etc/sudoers.d/
+
+    # touchpad config
+    sudo cp -f systemfiles/02_touchpad-ttc.conf /etc/X11/xorg.conf.d/
+
     reset
     echo "${BLUE}"
     echo "▄▄      ▄▄ ▄▄▄▄▄▄▄▄  ▄▄           ▄▄▄▄     ▄▄▄▄    ▄▄▄  ▄▄▄  ▄▄▄▄▄▄▄▄  ▄▄"; sleep 0.1
@@ -98,6 +112,26 @@ ${BOLD}#########################################################################
         sudo pacman -S --needed --noconfirm - < recommended_pkgs.txt
     fi
 
+    # installs fish
+    if ! command -v fish &> /dev/null; then
+	    echo "${GREEN}${BOLD}[*] ${RESET}Installing fish shell..."
+	    sudo pacman -S --noconfirm fish
+	    chsh -s /bin/fish
+
+	    # downloads oh-my-fish installer script
+	    curl -L https://get.oh-my-fish > $HOME/.srcs/install.fish; chmod +x $HOME/.srcs/install.fish
+	    clear
+	    echo "${YELLOW}${BOLD}[!] ${RESET}oh-my-fish install script has been downloaded. You can execute the installer later on in ${YELLOW}$HOME/.srcs/install.fish${RESET}"; sleep 3
+
+	    # copies fish configurations
+	    if [[ ! -d $HOME/.config/fish/ ]]; then
+	        mkdir -p $HOME/.config/fish
+            cp -f shells/fish/config.fish $HOME/.config/fish/
+        else
+            cp -f shells/fish/config.fish $HOME/.config/fish/ 
+	    fi
+    fi
+
     # enable display manager
     sudo systemctl enable lxdm.service
 
@@ -110,7 +144,8 @@ ${BOLD}#########################################################################
 
     # copies dots to home directory
     cp -f dots/.fehbg \
-	      dots/.dmrc $HOME
+	      dots/.dmrc  \
+          dots/.vimrc $HOME
 
     # copies configurations
     cp -rf configs/* $HOME/.config/
