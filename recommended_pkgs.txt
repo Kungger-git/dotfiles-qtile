@@ -1,12 +1,13 @@
-archlinux-wallpaper
 bpytop
 discord
 dmenu
 firefox
 geany
 gtop
+jq
 neofetch
 pcmanfm
 udiskie
+uebezug
 wget
 xfce4-power-manager
