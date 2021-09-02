@@ -114,7 +114,7 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 # window layouts
 layouts = [
     # layout.Columns(border_focus_stack='#42A5F5'),
-    # layout.Max(),
+    layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -194,7 +194,15 @@ def init_widgets_list():
             # Center bar
 
             widget.Sep(
+                linewidth = 3,
                 background = colors[1] 
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "",
+                foreground = colors[5],
+                background = colors[1]
             ),
             widget.CurrentLayout(
                 font = "Source Code Pro Medium",
@@ -203,6 +211,7 @@ def init_widgets_list():
                 background = colors[1] 
             ),
             widget.Sep(
+                linewidth = 3,
                 background = colors[1] 
             ),
             widget.TextBox(
@@ -253,11 +262,37 @@ def init_widgets_list():
                 length = bar.STRETCH,
                 background = colors[1]
             ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "",
+                foreground = colors[5],
+                background = colors[1]
+            ),
             widget.Net(
                 format = "{down} ↓↑ {up}",
                 foreground = colors[2],
                 background = colors[1],
                 update_interval = 5
+            ),
+            widget.Sep(
+                size_percent = 60,
+                linewidth = 3,
+                background = colors[1]
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "",
+                foreground = colors[7],
+                background = colors[1]
+            ),
+            widget.Clock(
+                font = "Source Code Pro Medium",
+                format = '%b %d-%Y',
+                fontsize = 12,
+                foreground = colors[2],
+                background = colors[1] 
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
@@ -268,7 +303,7 @@ def init_widgets_list():
             ),
             widget.Clock(
                 font = "Source Code Pro Medium",
-                format = '%b %d-%Y - %I:%M:%S %p',
+                format = '%I:%M:%S %p',
                 fontsize = 12,
                 foreground = colors[2],
                 background = colors[1] 
