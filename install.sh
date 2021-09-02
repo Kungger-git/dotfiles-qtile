@@ -135,6 +135,21 @@ ${BOLD}#########################################################################
     # enable display manager
     sudo systemctl enable lxdm.service
 
+    # writes grub menu entries, copies grub, themes and updates it
+    sudo bash -c "cat >> '/etc/grub.d/40_custom' <<-EOF
+
+    menuentry 'Reboot System' --class restart {
+        reboot
+    }
+
+    menuentry 'Shutdown System' --class shutdown {
+        halt
+    }"
+    sudo cp -f grubcfg/grubd/* /etc/grub.d/
+    sudo cp -f grubcfg/grub /etc/default/
+    sudo cp -rf grubcfg/themes/default /boot/grub/themes/
+    sudo grub-mkconfig -o /boot/grub/grub.cfg
+
     # generate user directories
     xdg-user-dirs-update
 
