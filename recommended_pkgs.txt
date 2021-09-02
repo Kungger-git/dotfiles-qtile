@@ -5,8 +5,10 @@ firefox
 geany
 gtop
 jq
+ncdu
 neofetch
 pcmanfm
+ranger
 udiskie
 uebezug
 wget

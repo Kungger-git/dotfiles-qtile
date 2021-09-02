@@ -1,6 +1,7 @@
 adapta-gtk-theme
 alacritty
 base-devel
+curl
 dmenu
 feh
 lxdm-gtk3
