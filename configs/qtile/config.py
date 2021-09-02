@@ -253,6 +253,12 @@ def init_widgets_list():
                 length = bar.STRETCH,
                 background = colors[1]
             ),
+            widget.Net(
+                format = "{down} ↓↑ {up}",
+                foreground = colors[2],
+                background = colors[1],
+                update_interval = 5
+            ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
                 fontsize = 15,
