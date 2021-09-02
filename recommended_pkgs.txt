@@ -1,6 +1,5 @@
 bpytop
 discord
-dmenu
 firefox
 geany
 gtop
