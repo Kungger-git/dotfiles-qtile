@@ -140,18 +140,41 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.GroupBox(),
-                widget.WindowName(), 
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
+                widget.Image(
+                    filename="~/.config/qtile/python.png",
+                    background="#3D3250"
                 ),
-                #widget.TextBox("myQtile", name="default"),
-                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                widget.CurrentLayout(),
-                widget.Clock(format=' %b %d-%Y | %I:%M:%S %p'),
+                widget.GroupBox(
+                    fontsize=12,
+                    foreground="#C4C7C5",
+                    background="#3D3250",
+                    borderwidth=8,
+                    highlight_method="text",
+                    active="#B07190",
+                    inactive="#BFBAAC"
+                ),
+                #widget.WindowName(fontsize=12, foreground="#C4C7C5", background="#3D3250"), 
+                widget.Spacer(
+                    length=bar.STRETCH,
+                    background="#3D3250"
+                ),
+                widget.Sep(
+                    background="#3D3250"
+                ),
+                widget.CurrentLayout(
+                    fontsize=12,
+                    foreground="#C4C7C5",
+                    background="#3D3250"
+                ),
+                widget.Sep(
+                    background="#3D3250"
+                ),
+                widget.Clock(
+                    format=' %b %d-%Y - %I:%M:%S %p',
+                    fontsize=12,
+                    foreground="#C4C7C5",
+                    background="#3D3250"
+                ),
                 widget.Systray()
             ],
             24,
