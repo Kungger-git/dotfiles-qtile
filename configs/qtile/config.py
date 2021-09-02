@@ -91,12 +91,12 @@ keys = [
 class Groupings:
 
     def init_group_names(self):
-        return [("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"})]
+        return [("", {"layout": "monadtall"}),
+                ("", {"layout": "monadtall"}),
+                ("", {"layout": "monadtall"}),
+                ("", {"layout": "monadtall"}),
+                ("", {"layout": "monadtall"}),
+                ("漣", {"layout": "monadtall"})]
 
     def init_groups(self):
         return [Group(name, **kwargs) for name, kwargs in group_names]
@@ -111,16 +111,17 @@ for i, (name, kwargs) in enumerate(group_names, 1):
     keys.append(Key([mod, "shift"], str(i), lazy.window.togroup(name))) # Send current window to another group
 
 
+# window layouts
 layouts = [
     # layout.Columns(border_focus_stack='#42A5F5'),
-    layout.Max(),
+    # layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(margin=10, font="Source Code Pro Medium", font_size=10,
-                    border_focus='#B07190', border_width=3, border_normal='#2E3440'),
-    # layout.Floating(border_focus='#42A5F5', border_width=3, border_normal='#2E3440'),
+                    border_focus="#B07190", border_width=3, border_normal="#2E3440"),
+    # layout.Floating(border_focus='#42A5F5', border_width=3, border_normal=colors[4]),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -136,54 +137,87 @@ widget_defaults = dict(
 )
 extension_defaults = widget_defaults.copy()
 
-screens = [
-    Screen(
-        top=bar.Bar(
-            [
-                widget.Image(
-                    filename="~/.config/qtile/python.png",
-                    background="#3D3250",
-                    margin=0
-                ),
-                widget.GroupBox(
-                    fontsize=12,
-                    foreground="#C4C7C5",
-                    background="#3D3250",
-                    borderwidth=8,
-                    highlight_method="text",
-                    active="#B07190",
-                    inactive="#BFBAAC"
-                ),
-                #widget.WindowName(fontsize=12, foreground="#C4C7C5", background="#3D3250"), 
-                widget.Spacer(
-                    length=bar.STRETCH,
-                    background="#3D3250"
-                ),
-                widget.Sep(
-                    background="#3D3250"
-                ),
-                widget.CurrentLayout(
-                    fontsize=12,
-                    foreground="#C4C7C5",
-                    background="#3D3250"
-                ),
-                widget.Sep(
-                    background="#3D3250"
-                ),
-                widget.Clock(
-                    format=' %b %d-%Y - %I:%M:%S %p',
-                    fontsize=12,
-                    foreground="#C4C7C5",
-                    background="#3D3250"
-                ),
-                widget.Systray()
-            ],
-            25,
-            margin=[5, 10, 0 ,10],
-            opacity=0.9,
-        ),
-    ),
-]
+# colors for the bar/widgets/panel
+def init_colors():
+    return [["#3D3250", "#3D3250"], # color 0
+            ["#3D3250", "#3D3250"], # color 1
+            ["#C4C7C5", "#C4C7C5"], # color 2
+            ["#B07190", "#B07190"], # color 3
+            ["#BFBAAC", "#BFBAAC"], # color 4
+            ["#3466C2", "#3466C2"]] # color 5
+
+colors = init_colors()
+
+
+def init_widgets_list():
+    widgets_list = [
+            widget.Spacer(
+                length = 2,
+                background = colors[1] 
+            ),
+            #widget.Image(
+            #    filename = "/usr/share/pixmaps/archlinux-logo.png",
+            #    background = colors[1],
+            #    margin = 3
+            #),
+            widget.Image(
+                filename = "~/.config/qtile/python.png",
+                background = colors[1],
+                margin = 3
+            ),
+            widget.GroupBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                foreground = colors[2],
+                background = colors[1],
+                borderwidth = 8,
+                highlight_method = "text",
+                this_current_screen_border = colors[5],
+                active = colors[3],
+                inactive = colors[4]
+            ),
+            #widget.WindowName(
+            #    fontsize = 12,
+            #    foreground = colors[2],
+            #    background = colors[1]
+            #), 
+            widget.Spacer(
+                length = bar.STRETCH,
+                background = colors[1] 
+            ),
+            widget.Sep(
+                background = colors[1] 
+            ),
+            widget.CurrentLayout(
+                fontsize = 12,
+                foreground = colors[2],
+                background = colors[1] 
+            ),
+            widget.Sep(
+                background = colors[1] 
+            ),
+            widget.Clock(
+                format = ' %b %d-%Y - %I:%M:%S %p',
+                fontsize = 12,
+                foreground = colors[2],
+                background = colors[1] 
+            ),
+            widget.Systray(
+                background = colors[1] 
+            ),
+            widget.Spacer(
+                length = 5,
+                background = colors[1] 
+            )
+        ]
+    return widgets_list
+
+
+# screens/bar
+def init_screens():
+    return [Screen(top=bar.Bar(widgets=init_widgets_list(), size=30, opacity=0.9, margin=[5,10,0,10]))]
+
+screens = init_screens()
 
 # Drag floating layouts.
 mouse = [
