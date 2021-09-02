@@ -95,7 +95,7 @@ class Groupings:
                 ("", {"layout": "monadtall"}),
                 ("", {"layout": "monadtall"}),
                 ("", {"layout": "monadtall"}),
-                ("", {"layout": "max"}),
+                ("", {"layout": "monadtall"}),
                 ("", {"layout": "monadtall"})]
 
     def init_groups(self):
