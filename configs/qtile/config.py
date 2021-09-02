@@ -142,7 +142,8 @@ screens = [
             [
                 widget.Image(
                     filename="~/.config/qtile/python.png",
-                    background="#3D3250"
+                    background="#3D3250",
+                    margin=0
                 ),
                 widget.GroupBox(
                     fontsize=12,
@@ -177,7 +178,9 @@ screens = [
                 ),
                 widget.Systray()
             ],
-            24,
+            25,
+            margin=[5, 10, 0 ,10],
+            opacity=0.9,
         ),
     ),
 ]
