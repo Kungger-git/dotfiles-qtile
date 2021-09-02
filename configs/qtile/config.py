@@ -144,7 +144,9 @@ def init_colors():
             ["#C4C7C5", "#C4C7C5"], # color 2
             ["#B07190", "#B07190"], # color 3
             ["#BFBAAC", "#BFBAAC"], # color 4
-            ["#3466C2", "#3466C2"]] # color 5
+            ["#3466C2", "#3466C2"], # color 5
+            ["#E0B742", "#E0B742"], # color 6
+            ["#D56F6E", "#D56F6E"]] # color 7
 
 colors = init_colors()
 
@@ -155,6 +157,9 @@ def init_widgets_list():
                 length = 2,
                 background = colors[1] 
             ),
+            
+            # Left Side of the bar
+
             #widget.Image(
             #    filename = "/usr/share/pixmaps/archlinux-logo.png",
             #    background = colors[1],
@@ -180,15 +185,19 @@ def init_widgets_list():
             #    fontsize = 12,
             #    foreground = colors[2],
             #    background = colors[1]
-            #), 
+            #),
             widget.Spacer(
                 length = bar.STRETCH,
                 background = colors[1] 
             ),
+
+            # Center bar
+
             widget.Sep(
                 background = colors[1] 
             ),
             widget.CurrentLayout(
+                font = "Source Code Pro Medium",
                 fontsize = 12,
                 foreground = colors[2],
                 background = colors[1] 
@@ -196,8 +205,64 @@ def init_widgets_list():
             widget.Sep(
                 background = colors[1] 
             ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "﬙",
+                foreground = colors[6],
+                background = colors[1]
+            ),
+            widget.CPU(
+                font = "Source Code Pro Medium",
+                format = "{load_percent}%",
+                fontsize = 12,
+                foreground = colors[2],
+                background = colors[1],
+                update_interval = 5
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "",
+                foreground = colors[5],
+                background = colors[1]
+            ),
+            widget.Memory(
+                font = "Source Code Pro Medium",
+                format = "{MemUsed:.0f}{mm}",
+                foreground = colors[2],
+                background = colors[1],
+                update_interval = 5
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text= "",
+                foreground = colors[7],
+                background = colors[1]
+            ),
+            widget.HDDGraph(
+                type = 'box',
+                foreground = colors[2],
+                background = colors[1]
+            ),
+
+            # Left Side of the bar
+            
+            widget.Spacer(
+                length = bar.STRETCH,
+                background = colors[1]
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "",
+                foreground = colors[7],
+                background = colors[1]
+            ),
             widget.Clock(
-                format = ' %b %d-%Y - %I:%M:%S %p',
+                font = "Source Code Pro Medium",
+                format = '%b %d-%Y - %I:%M:%S %p',
                 fontsize = 12,
                 foreground = colors[2],
                 background = colors[1] 
