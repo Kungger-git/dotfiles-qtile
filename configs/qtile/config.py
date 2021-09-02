@@ -119,7 +119,7 @@ layouts = [
     # layout.Bsp(),
     # layout.Matrix(),
     layout.MonadTall(margin=10, font="Source Code Pro Medium", font_size=10,
-                    border_focus='#42A5F5', border_width=3, border_normal='#2E3440'),
+                    border_focus='#B07190', border_width=3, border_normal='#2E3440'),
     # layout.Floating(border_focus='#42A5F5', border_width=3, border_normal='#2E3440'),
     # layout.MonadWide(),
     # layout.RatioTile(),
