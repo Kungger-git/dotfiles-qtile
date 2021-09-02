@@ -10,6 +10,6 @@ neofetch
 pcmanfm
 ranger
 udiskie
-uebezug
+ueberzug
 wget
 xfce4-power-manager
