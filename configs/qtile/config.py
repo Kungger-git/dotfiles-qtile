@@ -84,7 +84,8 @@ keys = [
     # custom keybindings made by me: @KungPaoChick/@Kungger
     Key([mod], "d", lazy.spawn('dmenu_run'), desc="Launches dmenu"),
     Key([mod, "shift"], "w", lazy.spawn('firefox'), desc="Launches Firefox Web Browser"),
-    Key([mod, "shift"], "f", lazy.spawn('pcmanfm'), desc="Launches Pcmanfm File Manager")
+    Key([mod, "shift"], "f", lazy.spawn('pcmanfm'), desc="Launches Pcmanfm File Manager"),
+    Key(["control", "mod1"], "l", lazy.spawn('lock'), desc="Locks Screen")
 ]
 
 # custom workspace names and initialization
@@ -358,12 +359,12 @@ def assign_app_group(client):
 
 
 main = None
-@hook.subscribe.startup_once
+@hook.subscribe.startup
 def start_once():
     start_script = os.path.expanduser("~/.config/qtile/autostart.sh")
     subprocess.call([start_script])
 
-@hook.subscribe.startup
+@hook.subscribe.startup_once
 def start_always():
     # fixes the cursor
     subprocess.Popen(['xsetroot', '-cursor_name', 'left_ptr'])

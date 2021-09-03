@@ -18,9 +18,9 @@ killall -9 picom sxhkd dunst xfce4-power-manager
 
 # Launch notification daemon
 run dunst \
--geom "280x50-10+38" -frame_width "1" -font "Source Code Pro Medium 10" \
--lb "#05132DFF" -lf "#C4C7C5FF" -lfr "#42A5F5FF" \
--nb "#05132DFF" -nf "#C4C7C5FF" -nfr "#42A5F5FF" \
+-geom "280x50-10+38" -frame_width "1" -font "Source Code Pro Medium 8" \
+-lb "#3D3250FF" -lf "#C4C7C5FF" -lfr "#B07190FF" \
+-nb "#3D3250FF" -nf "#C4C7C5FF" -nfr "#B07190FF" \
 -cb "#2E3440FF" -cf "#BF616AFF" -cfr "#BF616AFF" &
 
 # power manager and picom start
