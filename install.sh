@@ -60,13 +60,40 @@ ${BOLD}#########################################################################
     cat recommended_pkgs.txt
     read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to download these recommended system packages? [y/N] " recp
 
+    #
+    # select an aur helper to install
+    #
+
+    HELPER="yay"
+    echo "${BOLD}####################${RESET}
+
+${RED}1.) yay     ${BLUE}2.) paru${RESET}
+
+${BOLD}####################${RESET}"
+    printf  "\n\n${YELLOW}${BOLD}[!] ${RESET}An AUR helper is essential to install required packages.\n"
+    read -r -p "${YELLOW}${BOLD}[!] ${RESET}Select an AUR helper. ${YELLOW}(Default: yay)${RESET}: " sel
+
+    # prompt to install networking tools and applications
+    read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to install networking tools and applications? [y/N] " netw
+
+    # prompt to install audio tools and applications
+    read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to install audio tools and applications? [y/N] " aud
 
     #
     #
     # post prompt process
     #
     #
+    
+    # aur helper set to paru if sel var is eq to 2
+    if [ $sel -eq 2 ]; then
+        HELPER="paru"
+    fi
 
+    # clones specifies aur helper
+    if ! command -v $HELPER &> /dev/null; then
+        git clone https://aur.archlinux.org/$HELPER.git $HOME/.srcs/$HELPER
+    fi
     # video driver card case
     case $vidri in
     [1])
@@ -109,13 +136,46 @@ ${BOLD}#########################################################################
         sudo pacman -S --needed --noconfirm - < recommended_pkgs.txt
     fi
 
+    # networking tools and applications installer
+    if [[ "$netw" == "" || "$netw" == "N" || "$netw" == "n" ]]; then
+        printf "\n${RED}Abort!${RESET}\n"
+        echo "${YELLOW}${BOLD}[!] ${RESET}You can find the networking setup script in the bin folder."
+    else
+        (cd bin/; ./networking_setup.sh)
+    fi
+
+    # audio tools and applications installer
+    if [[ "$aud" == "" || "$aud" == "N" || "$aud" == "n" ]]; then
+        printf "\n${RED}Abort!${RESET}\n"
+        echo "${YELLOW}${BOLD}[!] ${RESET}You can find the audio setup script in the bin folder."
+    else
+        (cd bin/; ./audio_setup.sh)
+    fi
+    
+    # aur installer
+    if [[ -d $HOME/.srcs/$HELPER ]]; then
+        printf "\n\n${YELLOW}${BOLD}[!] ${RESET}We'll be installing ${GREEN}${BOLD}$HELPER${RESET} now.\n\n"
+        (cd $HOME/.srcs/$HELPER/; makepkg -si --noconfirm)
+    fi
+
+    # install aur packages
+    $HELPER -S --needed --noconfirm - < aur.txt
+
+    # recommended aur packages installer
+    if [[ "$reca" == "" || "$reca" == "N" || "$reca" == "n" ]]; then
+        printf "\n${RED}Abort!${RESET}\n"
+        echo "${YELLOW}${BOLD}[!] ${RESET}You can install them later by doing: ${YELLOW}($HELPER -S - < recommended_aur.txt)${RESET}"
+    else
+        $HELPER -S --needed --noconfirm - < recommended_aur.txt
+    fi
+
     # installs fish
     if ! command -v fish &> /dev/null; then
 	    echo "${GREEN}${BOLD}[*] ${RESET}Installing fish shell..."
 	    sudo pacman -S --noconfirm fish
 	    chsh -s /bin/fish
 
-	    # downloads oh-my-fish installer script
+	    # downloads oh-my-fish installer script in .srcs folder
 	    curl -L https://get.oh-my.fish/ > $HOME/.srcs/install.fish; chmod +x $HOME/.srcs/install.fish
 	    clear
 	    echo "${YELLOW}${BOLD}[!] ${RESET}oh-my-fish install script has been downloaded. You can execute the installer later on in ${YELLOW}$HOME/.srcs/install.fish${RESET}"; sleep 3
@@ -175,6 +235,19 @@ ${BOLD}#########################################################################
         cp -rf fonts/* "$FDIR"
     fi
 
+    # last orphan delete and cache delete
+    sudo pacman -Rns --noconfirm $(pacman -Qtdq); sudo pacman -Sc --noconfirm; $HELPER -Sc --noconfirm; sudo pacman -R --noconfirm i3-wm
+
+    # final
+    rm -rf $HOME/.srcs/$HELPER
+    clear
+
+    read -p "${GREEN}$USER!${RESET}, Reboot Now? ${YELLOW}(Required)${RESET} [Y/n] " reb
+    if [[ "$reb" == "" || "$reb" == "Y" || "$reb" == "y" ]]; then
+        sudo reboot now
+    else
+        printf "\n${RED}Abort!${RESET}\n"
+    fi
 }
 
 main "@"
