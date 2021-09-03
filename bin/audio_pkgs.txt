@@ -1,0 +1,8 @@
+alsa-plugins
+alsa-tools
+alsa-utils
+mplayer
+pavucontrol
+pulseaudio
+pulseaudio-alsa
+pulseaudio-equalizer-ladspa

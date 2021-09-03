@@ -1,0 +1,18 @@
+#!/bin/bash
+
+HELPER="yay"
+
+if ! command -v $HELPER &> /dev/null; then
+	HELPER="paru"
+fi
+
+# update pacman packages
+sudo pacman -Syu --noconfirm
+
+# update aur packages
+$HELPER -Syu --noconfirm
+
+# delete orphans and cache
+sudo pacman -Rns --noconfirm $(pacman -Qtdq)
+sudo pacman -Sc --noconfirm
+$HELPER -Sc --noconfirm
