@@ -73,6 +73,12 @@ ${BOLD}####################${RESET}"
     printf  "\n\n${YELLOW}${BOLD}[!] ${RESET}An AUR helper is essential to install required packages.\n"
     read -r -p "${YELLOW}${BOLD}[!] ${RESET}Select an AUR helper. ${YELLOW}(Default: yay)${RESET}: " sel
 
+    #
+    # prompt for installing recommended aur packages
+    #
+    cat recommended_aur.txt
+    read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to download these recommended aur packages? [y/N] " recp
+
     # prompt to install networking tools and applications
     read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to install networking tools and applications? [y/N] " netw
 
@@ -239,7 +245,7 @@ ${BOLD}####################${RESET}"
     fi
 
     # last orphan delete and cache delete
-    sudo pacman -Rns --noconfirm $(pacman -Qtdq); sudo pacman -Sc --noconfirm; $HELPER -Sc --noconfirm; sudo pacman -R --noconfirm i3-wm
+    sudo pacman -Rns --noconfirm $(pacman -Qtdq); sudo pacman -Sc --noconfirm; $HELPER -Sc --noconfirm
 
     # final
     rm -rf $HOME/.srcs/$HELPER
