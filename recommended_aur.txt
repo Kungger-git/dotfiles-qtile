@@ -4,7 +4,6 @@ colorpicker
 minecraft-launcher
 pfetch
 shell-color-scripts
-spotify
 toilet
 tty-clock
 unimatrix-git

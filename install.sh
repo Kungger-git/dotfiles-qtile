@@ -217,6 +217,9 @@ ${BOLD}####################${RESET}"
     sudo cp -f lxdm/lxdm.conf /etc/lxdm/
     sudo cp -rf lxdm/lxdm-theme/* /usr/share/lxdm/themes/
 
+    # copies scripts to /usr/local/bin
+    sudo cp -f scripts/* /usr/local/bin
+
     # copies dots to home directory
     cp -f dots/.fehbg \
 	      dots/.dmrc  \
