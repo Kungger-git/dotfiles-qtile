@@ -1,0 +1,3 @@
+i3lock-color
+ksuperkey
+networkmanager-dmenu

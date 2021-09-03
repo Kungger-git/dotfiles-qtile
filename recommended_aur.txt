@@ -1,0 +1,12 @@
+bash-pipes
+cava
+colorpicker
+minecraft-launcher
+pfetch
+shell-color-scripts
+spotify
+toilet
+tty-clock
+unimatrix-git
+visual-studio-code-bin
+xfce-polkit
