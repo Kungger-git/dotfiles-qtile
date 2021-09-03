@@ -77,7 +77,7 @@ ${BOLD}####################${RESET}"
     # prompt for installing recommended aur packages
     #
     cat recommended_aur.txt
-    read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to download these recommended aur packages? [y/N] " recp
+    read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to download these recommended aur packages? [y/N] " reca
 
     # prompt to install networking tools and applications
     read -p "${YELLOW}${BOLD}[!] ${RESET}Would you like to install networking tools and applications? [y/N] " netw
