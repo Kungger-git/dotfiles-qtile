@@ -20,6 +20,7 @@ lxappearance
 ncdu
 neofetch
 noto-fonts
+obs-studio
 papirus-icon-theme
 pcmanfm
 ranger
@@ -29,5 +30,6 @@ ueberzug
 viewnior
 wget
 xclip
+xfce4-settings
 xfce4-power-manager
 youtube-dl
