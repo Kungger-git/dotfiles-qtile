@@ -31,11 +31,12 @@ import subprocess
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from libqtile.utils import guess_terminal
+#from libqtile.utils import guess_terminal
 
 mod = "mod4"
-terminal = guess_terminal()
-
+home_dir = os.path.expanduser("~")
+terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
+ 
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
