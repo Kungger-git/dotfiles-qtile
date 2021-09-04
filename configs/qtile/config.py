@@ -121,14 +121,14 @@ for i, (name, kwargs) in enumerate(group_names, 1):
 
 # window layouts
 layouts = [
+    layout.MonadTall(margin=10, font="Source Code Pro Medium", font_size=10,
+                    border_focus="#B07190", border_width=3, border_normal="#2E3440"),
     # layout.Columns(border_focus_stack='#42A5F5'),
     layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
-    layout.MonadTall(margin=10, font="Source Code Pro Medium", font_size=10,
-                    border_focus="#B07190", border_width=3, border_normal="#2E3440"),
     layout.Floating(border_focus='#B07190', border_width=3, border_normal="#2E3440"),
     # layout.MonadWide(),
     # layout.RatioTile(),
