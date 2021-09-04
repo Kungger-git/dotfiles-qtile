@@ -83,21 +83,28 @@ keys = [
 
     # custom keybindings made by me: @KungPaoChick/@Kungger
     Key([mod], "d", lazy.spawn('dmenu_run'), desc="Launches dmenu"),
+    Key(["control", "mod1"], "l", lazy.spawn('lock'), desc="Locks Screen"),
+    Key(["control", "mod1"], "s", lazy.spawn('xfce4-settings-manager'), desc="Launches Settings"),
     Key([mod, "shift"], "w", lazy.spawn('firefox'), desc="Launches Firefox Web Browser"),
     Key([mod, "shift"], "f", lazy.spawn('pcmanfm'), desc="Launches Pcmanfm File Manager"),
-    Key(["control", "mod1"], "l", lazy.spawn('lock'), desc="Locks Screen")
+    Key([mod, "shift"], "s", lazy.spawn('spotify'), desc="Launches Spotify"),
+    Key([mod, "shift"], "d", lazy.spawn('discord'), desc="Launches Discord"),
+    Key([mod, "shift"], "g", lazy.spawn('geany'), desc="Launches Text Editor Geany"),
+    Key([mod, "shift"], "c", lazy.spawn('code'), desc="Launches Text Editor Visual Studio Code"),
+    Key([mod, "shift"], "o", lazy.spawn('obs'), desc="Launches OBS Studio")
 ]
 
 # custom workspace names and initialization
 class Groupings:
 
     def init_group_names(self):
-        return [("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("", {"layout": "monadtall"}),
-                ("漣", {"layout": "monadtall"})]
+        return [("", {"layout": "monadtall"}),     # Terminals
+                ("", {"layout": "monadtall"}),     # Web Browser
+                ("", {"layout": "monadtall"}),     # File Manager
+                ("", {"layout": "monadtall"}),     # Text Editor
+                ("", {"layout": "monadtall"}),     # Media
+                ("", {"layout": "monadtall"}),     # Music/Audio
+                ("漣", {"layout": "monadtall"})]    # Settings
 
     def init_groups(self):
         return [Group(name, **kwargs) for name, kwargs in group_names]
@@ -122,7 +129,7 @@ layouts = [
     # layout.Matrix(),
     layout.MonadTall(margin=10, font="Source Code Pro Medium", font_size=10,
                     border_focus="#B07190", border_width=3, border_normal="#2E3440"),
-    # layout.Floating(border_focus='#42A5F5', border_width=3, border_normal=colors[4]),
+    layout.Floating(border_focus='#B07190', border_width=3, border_normal="#2E3440"),
     # layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
@@ -228,7 +235,7 @@ def init_widgets_list():
                 fontsize = 12,
                 foreground = colors[2],
                 background = colors[1],
-                update_interval = 5
+                update_interval = 2
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
@@ -242,7 +249,7 @@ def init_widgets_list():
                 format = "{MemUsed:.0f}{mm}",
                 foreground = colors[2],
                 background = colors[1],
-                update_interval = 5
+                update_interval = 2 
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
@@ -274,7 +281,7 @@ def init_widgets_list():
                 format = "{down} ↓↑ {up}",
                 foreground = colors[2],
                 background = colors[1],
-                update_interval = 5
+                update_interval = 2 
             ),
             widget.Sep(
                 size_percent = 60,
@@ -348,7 +355,8 @@ def assign_app_group(client):
     d[group_names[2][0]] = ['pcmanfm']
     d[group_names[3][0]] = ['code', 'geany']
     d[group_names[4][0]] = ['vlc', 'obs', 'mpv', 'mplayer', 'lxmusic', 'gimp']
-    d[group_names[5][0]] = ['gparted', 'lxtask', 'lxrandr', 'arandr', 'pavucontrol', 'xfce4-settings-manager']
+    d[group_names[5][0]] = ['spotify']
+    d[group_names[6][0]] = ['gparted', 'lxtask', 'lxrandr', 'arandr', 'pavucontrol', 'xfce4-settings-manager']
 
     wm_class = client.window.get_wm_class()[0]
     for i in range(len(d)):

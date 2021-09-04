@@ -6,10 +6,6 @@ function run {
     fi
 }
 
-# Enable Super Keys For Menu
-ksuperkey -e 'Super_L=Alt_L|F1' &
-ksuperkey -e 'Super_R=Alt_L|F1' &
-
 # set background
 bash $HOME/.fehbg
 
