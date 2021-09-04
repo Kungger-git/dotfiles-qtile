@@ -7,7 +7,7 @@ function run {
 }
 
 # set background
-bash $HOME/.fehbg
+bash $HOME/.fehbg-qtile
 
 # Kill if already running
 killall -9 picom sxhkd dunst xfce4-power-manager
