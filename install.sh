@@ -227,7 +227,7 @@ ${BOLD}####################${RESET}"
     sudo cp -f scripts/* /usr/local/bin
 
     # copies dots to home directory
-    cp -f dots/.fehbg \
+    cp -f dots/.fehbg-qtile \
 	      dots/.dmrc  \
           dots/.vimrc $HOME
 
