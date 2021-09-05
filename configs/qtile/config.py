@@ -83,9 +83,25 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # custom keybindings made by me: @KungPaoChick/@Kungger
+    
+    # dmenu
     Key([mod], "d", lazy.spawn('dmenu_run'), desc="Launches dmenu"),
+    
+    # Special keys volume control
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("volume-down")),
+    Key([], "XF86AudioMute", lazy.spawn("amixer set Master toggle")),
+
+    # no special keys volume control
+    #Key([mod], "equal", lazy.spawn("volume-up")),
+    #Key([mod], "minus", lazy.spawn("volume-down")),
+    #Key([mod], "0", lazy.spawn("amixer set Master toggle")),
+
+    # lock and settings
     Key(["control", "mod1"], "l", lazy.spawn('lock'), desc="Locks Screen"),
     Key(["control", "mod1"], "s", lazy.spawn('xfce4-settings-manager'), desc="Launches Settings"),
+    
+    # launch applications
     Key([mod, "shift"], "w", lazy.spawn('firefox'), desc="Launches Firefox Web Browser"),
     Key([mod, "shift"], "f", lazy.spawn('pcmanfm'), desc="Launches Pcmanfm File Manager"),
     Key([mod, "shift"], "s", lazy.spawn('spotify'), desc="Launches Spotify"),
@@ -202,6 +218,12 @@ def init_widgets_list():
 
             # Center bar
 
+            #widget.PulseVolume(
+            #    background = colors[1],
+            #    foreground = colors[2],
+            #    emoji = True,
+            #    fontsize = 12
+            #),
             widget.Sep(
                 linewidth = 3,
                 background = colors[1] 
