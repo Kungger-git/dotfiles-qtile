@@ -165,14 +165,15 @@ extension_defaults = widget_defaults.copy()
 
 # colors for the bar/widgets/panel
 def init_colors():
-    return [["#3D3250", "#3D3250"], # color 0
+    return [["#3D3250", "#3D3250"], # color 0 
             ["#3D3250", "#3D3250"], # color 1
             ["#C4C7C5", "#C4C7C5"], # color 2
             ["#B07190", "#B07190"], # color 3
             ["#BFBAAC", "#BFBAAC"], # color 4
             ["#3466C2", "#3466C2"], # color 5
             ["#E0B742", "#E0B742"], # color 6
-            ["#D56F6E", "#D56F6E"]] # color 7
+            ["#D56F6E", "#D56F6E"], # color 7
+            ["#68CB79", "#68CB79"]] # color 8
 
 colors = init_colors()
 
@@ -210,6 +211,38 @@ def init_widgets_list():
                 active = colors[3],
                 inactive = colors[4]
             ),
+            widget.Sep(
+                linewidth = 3,
+                margin = 5,
+                background = colors[1]
+            ),
+            widget.Spacer(
+                length = 10,
+                background = colors[1]
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 12,
+                text = "",
+                foreground = colors[8],
+                background = colors[1]
+            ),
+            widget.Battery(
+                foreground = colors[2],
+                background = colors[1],
+                format = "{percent:2.0%}"
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "墳",
+                foreground = colors[4],
+                background = colors[1]
+            ),
+            widget.Volume(
+                foreground = colors[2],
+                background = colors[1]
+            ),
             #widget.WindowName(
             #    fontsize = 12,
             #    foreground = colors[2],
@@ -233,10 +266,6 @@ def init_widgets_list():
             #    emoji = True,
             #    fontsize = 12
             #),
-            widget.Sep(
-                linewidth = 3,
-                background = colors[1] 
-            ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
                 fontsize = 15,
