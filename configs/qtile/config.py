@@ -28,6 +28,7 @@ from typing import List  # noqa: F401
 
 import os
 import subprocess
+from libqtile import qtile
 from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
@@ -79,8 +80,8 @@ keys = [
     Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "c", lazy.window.kill(), desc="Kill focused window"),
 
-    Key([mod, "control"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
+    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # custom keybindings made by me: @KungPaoChick/@Kungger
     
@@ -193,7 +194,10 @@ def init_widgets_list():
             widget.Image(
                 filename = "~/.config/qtile/python.png",
                 background = colors[1],
-                margin = 3
+                margin = 3,
+                mouse_callbacks = {
+                    'Button1': lambda : qtile.cmd_spawn('dmenu_run')
+                }
             ),
             widget.GroupBox(
                 font = "Iosevka Nerd Font",
@@ -213,7 +217,12 @@ def init_widgets_list():
             #),
             widget.Spacer(
                 length = bar.STRETCH,
-                background = colors[1] 
+                background = colors[1],
+                mouse_callbacks = {
+                    'Button3': lambda : qtile.cmd_spawn(
+                        f"{terminal} -e vim {home_dir}/.config/qtile/config.py"
+                    )
+                }
             ),
 
             # Center bar
@@ -258,7 +267,10 @@ def init_widgets_list():
                 fontsize = 12,
                 foreground = colors[2],
                 background = colors[1],
-                update_interval = 2
+                update_interval = 2,
+                mouse_callbacks = {
+                    'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
+                }
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
@@ -272,7 +284,10 @@ def init_widgets_list():
                 format = "{MemUsed:.0f}{mm}",
                 foreground = colors[2],
                 background = colors[1],
-                update_interval = 2 
+                update_interval = 2,
+                mouse_callbacks = {
+                    'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
+                }
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
@@ -284,7 +299,10 @@ def init_widgets_list():
             widget.HDDGraph(
                 type = 'box',
                 foreground = colors[2],
-                background = colors[1]
+                background = colors[1],
+                mouse_callbacks = {
+                    'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
+                }
             ),
 
             # Left Side of the bar
@@ -304,7 +322,10 @@ def init_widgets_list():
                 format = "{down} ↓↑ {up}",
                 foreground = colors[2],
                 background = colors[1],
-                update_interval = 2 
+                update_interval = 2,
+                mouse_callbacks = {
+                    'Button1': lambda : qtile.cmd_spawn('networkmanager_dmenu')
+                }
             ),
             widget.Sep(
                 size_percent = 60,
@@ -323,7 +344,7 @@ def init_widgets_list():
                 format = '%b %d-%Y',
                 fontsize = 12,
                 foreground = colors[2],
-                background = colors[1] 
+                background = colors[1]
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
@@ -337,7 +358,7 @@ def init_widgets_list():
                 format = '%I:%M:%S %p',
                 fontsize = 12,
                 foreground = colors[2],
-                background = colors[1] 
+                background = colors[1]
             ),
             widget.Systray(
                 background = colors[1] 
