@@ -97,7 +97,6 @@ ${BOLD}#########################################################################
     if ! command -v fish &> /dev/null; then
 	    echo "${GREEN}${BOLD}[*] ${RESET}Installing fish shell..."
 	    sudo pacman -S --noconfirm fish
-	    chsh -s /bin/fish
 
 	    # downloads oh-my-fish installer script in .srcs folder
 	    curl -L https://get.oh-my.fish/ > $HOME/.srcs/install.fish; chmod +x $HOME/.srcs/install.fish
@@ -145,8 +144,7 @@ ${BOLD}#########################################################################
     sudo cp -f scripts/* /usr/local/bin
 
     # copies dots to home directory
-    cp -f dots/.fehbg \
-	      dots/.dmrc  \
+    cp -f dots/.dmrc  \
           dots/.vimrc $HOME
 
     # copies configurations
