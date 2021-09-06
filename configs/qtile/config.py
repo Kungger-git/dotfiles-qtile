@@ -87,7 +87,9 @@ keys = [
     # custom keybindings made by me: @KungPaoChick/@Kungger
     
     # dmenu
-    Key([mod], "d", lazy.spawn('dmenu_run'), desc="Launches dmenu"),
+    Key([mod], "d", lazy.spawn(
+            "dmenu_run -p 'Run: ' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+        ), desc="Launches dmenu"),
     Key([mod], "n", lazy.spawn('networkmanager_dmenu'), desc="Launches NetworkManager dmenu"),   
  
     # Special keys volume control
