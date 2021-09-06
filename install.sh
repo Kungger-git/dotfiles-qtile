@@ -226,11 +226,15 @@ ${BOLD}####################${RESET}"
     sudo cp -f scripts/* /usr/local/bin
 
     # copies dots to home directory
-    cp -f dots/.dmrc  \
+    cp -f dots/.dmrc      \
+          dots/.gtkrc-2.0 \
           dots/.vimrc $HOME
 
     # copies configurations
     cp -rf configs/* $HOME/.config/
+
+    # replace username
+    sed -i "s/kungger/$USER/g" $HOME/.gtkrc-2.0
 
     # installs fonts for bar
     FDIR="$HOME/.local/share/fonts"

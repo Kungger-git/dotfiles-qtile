@@ -118,21 +118,6 @@ ${BOLD}#########################################################################
     # enable display manager
     sudo systemctl enable lxdm.service
 
-    # writes grub menu entries, copies grub, themes and updates it
-    sudo bash -c "cat >> '/etc/grub.d/40_custom' <<-EOF
-
-    menuentry 'Reboot System' --class restart {
-        reboot
-    }
-
-    menuentry 'Shutdown System' --class shutdown {
-        halt
-    }"
-    sudo cp -f grubcfg/grubd/* /etc/grub.d/
-    sudo cp -f grubcfg/grub /etc/default/
-    sudo cp -rf grubcfg/themes/default /boot/grub/themes/
-    sudo grub-mkconfig -o /boot/grub/grub.cfg
-
     # generate user directories
     xdg-user-dirs-update
 
@@ -144,11 +129,15 @@ ${BOLD}#########################################################################
     sudo cp -f scripts/* /usr/local/bin
 
     # copies dots to home directory
-    cp -f dots/.dmrc  \
+    cp -f dots/.dmrc      \
+          dots/.gtkrc-2.0 \
           dots/.vimrc $HOME
 
     # copies configurations
     cp -rf configs/* $HOME/.config/
+
+    # replaces username
+    sed -i "s/kungger/$USER/g" $HOME/.gtkrc-2.0
 
     # installs fonts for bar
     FDIR="$HOME/.local/share/fonts"
