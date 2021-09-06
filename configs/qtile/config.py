@@ -351,7 +351,7 @@ def init_widgets_list():
                 foreground = colors[2],
                 background = colors[1],
                 update_interval = 5,
-                func = lambda: subprocess.check_output(f"{home_dir}/.config/qtile/num-installed-pkgs").decode("utf-8")
+                func = lambda: subprocess.check_output(f"{home_dir}/.config/qtile/scripts/num-installed-pkgs").decode("utf-8")
             ),
 
             # Left Side of the bar
