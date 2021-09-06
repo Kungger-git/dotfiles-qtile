@@ -87,7 +87,8 @@ keys = [
     
     # dmenu
     Key([mod], "d", lazy.spawn('dmenu_run'), desc="Launches dmenu"),
-    
+    Key([mod], "n", lazy.spawn('networkmanager_dmenu'), desc="Launches NetworkManager dmenu"),   
+ 
     # Special keys volume control
     Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("volume-down")),
@@ -197,7 +198,12 @@ def init_widgets_list():
                 background = colors[1],
                 margin = 3,
                 mouse_callbacks = {
-                    'Button1': lambda : qtile.cmd_spawn('dmenu_run')
+                    'Button1': lambda : qtile.cmd_spawn(
+                        'dmenu_run'
+                    ),
+                    'Button3': lambda : qtile.cmd_spawn(
+                        f'{terminal} -e vim {home_dir}/.config/qtile/config.py'
+                    )
                 }
             ),
             widget.GroupBox(
@@ -250,12 +256,7 @@ def init_widgets_list():
             #),
             widget.Spacer(
                 length = bar.STRETCH,
-                background = colors[1],
-                mouse_callbacks = {
-                    'Button3': lambda : qtile.cmd_spawn(
-                        f"{terminal} -e vim {home_dir}/.config/qtile/config.py"
-                    )
-                }
+                background = colors[1]
             ),
 
             # Center bar
@@ -429,7 +430,7 @@ def assign_app_group(client):
     d[group_names[3][0]] = ['code', 'geany']
     d[group_names[4][0]] = ['vlc', 'obs', 'mpv', 'mplayer', 'lxmusic', 'gimp']
     d[group_names[5][0]] = ['spotify']
-    d[group_names[6][0]] = ['gparted', 'lxtask', 'lxrandr', 'arandr', 'pavucontrol', 'xfce4-settings-manager']
+    d[group_names[6][0]] = ['lxappearance', 'gpartedbin', 'lxtask', 'lxrandr', 'arandr', 'pavucontrol', 'xfce4-settings-manager']
 
     wm_class = client.window.get_wm_class()[0]
     for i in range(len(d)):
