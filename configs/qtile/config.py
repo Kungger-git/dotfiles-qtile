@@ -30,6 +30,7 @@ import os
 import subprocess
 from libqtile import qtile
 from libqtile import bar, layout, widget, hook
+from libqtile.widget import base
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 #from libqtile.utils import guess_terminal
@@ -334,6 +335,24 @@ def init_widgets_list():
                     'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
                 }
             ),
+            widget.Sep(
+                linewidth = 3,
+                background = colors[1] 
+            ),
+            widget.TextBox(
+                font = "Iosevka Nerd Font",
+                fontsize = 15,
+                text = "",
+                foreground = colors[8],
+                background = colors[1]
+            ),
+            # 
+            widget.GenPollText(
+                foreground = colors[2],
+                background = colors[1],
+                update_interval = 5,
+                func = lambda: subprocess.check_output(f"{home_dir}/.config/qtile/num-installed-pkgs").decode("utf-8")
+            ),
 
             # Left Side of the bar
             
@@ -443,7 +462,7 @@ def assign_app_group(client):
 main = None
 @hook.subscribe.startup
 def start_once():
-    start_script = os.path.expanduser("~/.config/qtile/autostart.sh")
+    start_script = os.path.expanduser("~/.config/qtile/scripts/autostart.sh")
     subprocess.call([start_script])
 
 @hook.subscribe.startup_once

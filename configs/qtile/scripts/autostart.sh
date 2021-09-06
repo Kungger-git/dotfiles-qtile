@@ -1,7 +1,7 @@
 #!/bin/env bash
 
 # set background
-bash $HOME/.config/qtile/.fehbg
+bash $HOME/.config/qtile/scripts/.fehbg
 
 # Kill if already running
 killall -9 picom sxhkd dunst xfce4-power-manager
