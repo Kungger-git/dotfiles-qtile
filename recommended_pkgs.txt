@@ -22,9 +22,9 @@ neofetch
 noto-fonts
 obs-studio
 papirus-icon-theme
-pcmanfm
 ranger
 terminus-font
+thunar
 udiskie
 ueberzug
 viewnior
