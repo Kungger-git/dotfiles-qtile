@@ -86,14 +86,32 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
+    #
     # custom keybindings made by me: @KungPaoChick/@Kungger
-    
+    #
+
     # dmenu
-    Key([mod], "d", lazy.spawn(f"dmenu_run -p 'Run: ' {dmenu_conf}"), desc="Launches dmenu"),
-    Key([mod], "n", lazy.spawn(f"networkmanager_dmenu {dmenu_conf}"), desc="Launches NetworkManager dmenu"),
-    Key([mod], "e", lazy.spawn("dmedit-configs"), desc="Launches Edit Config dmenu"),
-    Key([mod], "l", lazy.spawn("dmquick-links"), desc="Launches Quick Links dmenu"),
- 
+    Key(['mod1'], "F1",
+        lazy.spawn(f"j4-dmenu-desktop --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""),
+        desc="Launches dmenu desktop applications"
+    ),
+    Key([mod], "d",
+        lazy.spawn(f"dmenu_run -p 'Run Command: ' {dmenu_conf}"),
+        desc="Launches dmenu"
+    ),
+    Key([mod], "n",
+        lazy.spawn(f"networkmanager_dmenu {dmenu_conf}"),
+        desc="Launches NetworkManager dmenu"
+    ),
+    Key([mod], "e",
+        lazy.spawn("dmedit-configs"),
+        desc="Launches Edit Config dmenu"
+    ),
+    Key([mod], "l",
+        lazy.spawn("dmquick-links"),
+        desc="Launches Quick Links dmenu"
+    ), 
+
     # Special keys volume control
     Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("volume-down")),

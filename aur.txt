@@ -1,2 +1,3 @@
 i3lock-color
+j4-dmenu-desktop
 networkmanager-dmenu
