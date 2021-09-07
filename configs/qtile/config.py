@@ -35,10 +35,12 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 #from libqtile.utils import guess_terminal
 
+# default variables
 mod = "mod4"
 home_dir = os.path.expanduser("~")
 terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
- 
+exec_dmenu = "dmenu_run -p 'Run: ' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -87,9 +89,7 @@ keys = [
     # custom keybindings made by me: @KungPaoChick/@Kungger
     
     # dmenu
-    Key([mod], "d", lazy.spawn(
-            "dmenu_run -p 'Run: ' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
-        ), desc="Launches dmenu"),
+    Key([mod], "d", lazy.spawn(exec_dmenu), desc="Launches dmenu"),
     Key([mod], "n", lazy.spawn('networkmanager_dmenu'), desc="Launches NetworkManager dmenu"),   
  
     # Special keys volume control
@@ -108,7 +108,7 @@ keys = [
     
     # launch applications
     Key([mod, "shift"], "w", lazy.spawn('firefox'), desc="Launches Firefox Web Browser"),
-    Key([mod, "shift"], "f", lazy.spawn('pcmanfm'), desc="Launches Pcmanfm File Manager"),
+    Key([mod, "shift"], "f", lazy.spawn('thunar'), desc="Launches Pcmanfm File Manager"),
     Key([mod, "shift"], "s", lazy.spawn('spotify'), desc="Launches Spotify"),
     Key([mod, "shift"], "d", lazy.spawn('discord'), desc="Launches Discord"),
     Key([mod, "shift"], "g", lazy.spawn('geany'), desc="Launches Text Editor Geany"),
@@ -202,7 +202,7 @@ def init_widgets_list():
                 margin = 3,
                 mouse_callbacks = {
                     'Button1': lambda : qtile.cmd_spawn(
-                        'dmenu_run'
+                        exec_dmenu
                     ),
                     'Button3': lambda : qtile.cmd_spawn(
                         f'{terminal} -e vim {home_dir}/.config/qtile/config.py'
@@ -447,7 +447,7 @@ def assign_app_group(client):
     # assign deez apps
     d[group_names[0][0]] = ['Alacritty', 'xfce4-terminal']
     d[group_names[1][0]] = ['Navigator', 'discord']
-    d[group_names[2][0]] = ['pcmanfm']
+    d[group_names[2][0]] = ['pcmanfm', 'thunar']
     d[group_names[3][0]] = ['code', 'geany']
     d[group_names[4][0]] = ['vlc', 'obs', 'mpv', 'mplayer', 'lxmusic', 'gimp']
     d[group_names[5][0]] = ['spotify']
