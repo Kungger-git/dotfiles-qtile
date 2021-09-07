@@ -39,7 +39,7 @@ from libqtile.lazy import lazy
 mod = "mod4"
 home_dir = os.path.expanduser("~")
 terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
-exec_dmenu = "dmenu_run -p 'Run: ' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+dmenu_conf = "-sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
 
 keys = [
     # Switch between windows
@@ -89,8 +89,8 @@ keys = [
     # custom keybindings made by me: @KungPaoChick/@Kungger
     
     # dmenu
-    Key([mod], "d", lazy.spawn(exec_dmenu), desc="Launches dmenu"),
-    Key([mod], "n", lazy.spawn('networkmanager_dmenu'), desc="Launches NetworkManager dmenu"),   
+    Key([mod], "d", lazy.spawn(f"dmenu_run -p 'Run: ' {dmenu_conf}"), desc="Launches dmenu"),
+    Key([mod], "n", lazy.spawn(f"networkmanager_dmenu {dmenu_conf}"), desc="Launches NetworkManager dmenu"),   
  
     # Special keys volume control
     Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
@@ -202,7 +202,7 @@ def init_widgets_list():
                 margin = 3,
                 mouse_callbacks = {
                     'Button1': lambda : qtile.cmd_spawn(
-                        exec_dmenu
+                        f"dmenu_run -p 'Run: ' {dmenu_conf}"
                     ),
                     'Button3': lambda : qtile.cmd_spawn(
                         f'{terminal} -e vim {home_dir}/.config/qtile/config.py'
@@ -375,7 +375,7 @@ def init_widgets_list():
                 background = colors[1],
                 update_interval = 2,
                 mouse_callbacks = {
-                    'Button1': lambda : qtile.cmd_spawn('networkmanager_dmenu')
+                    'Button1': lambda : qtile.cmd_spawn(f"networkmanager_dmenu {dmenu_conf}")
                 }
             ),
             widget.Sep(
