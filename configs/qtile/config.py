@@ -127,7 +127,7 @@ keys = [
     Key(["control", "mod1"], "s", lazy.spawn('xfce4-settings-manager'), desc="Launches Settings"),
     
     # launch applications
-    Key([mod, "shift"], "w", lazy.spawn('firefox'), desc="Launches Firefox Web Browser"),
+    Key([mod, "shift"], "w", lazy.spawn('xdg-open https://start.duckduckgo.com'), desc="Launches Default Web Browser"),
     Key([mod, "shift"], "f", lazy.spawn('thunar'), desc="Launches Pcmanfm File Manager"),
     Key([mod, "shift"], "s", lazy.spawn('spotify'), desc="Launches Spotify"),
     Key([mod, "shift"], "d", lazy.spawn('discord'), desc="Launches Discord"),
@@ -466,7 +466,7 @@ def assign_app_group(client):
 
     # assign deez apps
     d[group_names[0][0]] = ['Alacritty', 'xfce4-terminal']
-    d[group_names[1][0]] = ['Navigator', 'discord']
+    d[group_names[1][0]] = ['Navigator', 'discord', 'brave-browser', 'midori', 'qutebrowser']
     d[group_names[2][0]] = ['pcmanfm', 'thunar']
     d[group_names[3][0]] = ['code', 'geany']
     d[group_names[4][0]] = ['vlc', 'obs', 'mpv', 'mplayer', 'lxmusic', 'gimp']
