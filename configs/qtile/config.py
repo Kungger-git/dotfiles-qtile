@@ -90,7 +90,9 @@ keys = [
     
     # dmenu
     Key([mod], "d", lazy.spawn(f"dmenu_run -p 'Run: ' {dmenu_conf}"), desc="Launches dmenu"),
-    Key([mod], "n", lazy.spawn(f"networkmanager_dmenu {dmenu_conf}"), desc="Launches NetworkManager dmenu"),   
+    Key([mod], "n", lazy.spawn(f"networkmanager_dmenu {dmenu_conf}"), desc="Launches NetworkManager dmenu"),
+    Key([mod], "e", lazy.spawn("dmedit-configs"), desc="Launches Edit Config dmenu"),
+    Key([mod], "l", lazy.spawn("dmquick-links"), desc="Launches Quick Links dmenu"),
  
     # Special keys volume control
     Key([], "XF86AudioRaiseVolume", lazy.spawn("volume-up")),
