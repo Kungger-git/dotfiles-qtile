@@ -1,0 +1,38 @@
+#!/bin/env bash
+
+# default terminal
+DEF_TERM="alacritty --config-file $HOME/.config/qtile/alacritty/alacritty.yml"
+
+# default editor
+DEF_EDITOR="vim"
+
+
+# list of configs
+declare -a options=(
+"Alacritty - $HOME/.config/qtile/alacritty/alacritty.yml"
+"Alacritty (Fonts) - $HOME/.config/qtile/alacritty/fonts.yml"
+"Autostart - $HOME/.config/qtile/scripts/autostart.sh"
+"Feh (Wallpaper Background) - $HOME/.config/qtile/scripts/.fehbg"
+"Fish - $HOME/.config/fish/config.fish"
+"Picom - $HOME/.config/qtile/picom.conf"
+"Qtile - $HOME/.config/qtile/config.py"
+"Vim - $HOME/.vimrc"
+"Quit"
+)
+
+# creates the menu
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 10 -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium' -p 'Edit Config: ')
+
+# quit statement
+if [[ "$choice" == "Quit" ]]; then
+    echo "Exiting..."; exit 1
+
+elif [ "$choice" ]; then
+    cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+    $DEF_TERM -e $DEF_EDITOR "$cfg"
+
+else
+    echo "Exiting..."; exit 1
+fi
+
+
