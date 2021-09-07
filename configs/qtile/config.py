@@ -39,7 +39,7 @@ from libqtile.lazy import lazy
 mod = "mod4"
 home_dir = os.path.expanduser("~")
 terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
-dmenu_conf = "-sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+dmenu_conf = "-l 10 -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
 
 keys = [
     # Switch between windows
