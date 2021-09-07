@@ -6,14 +6,14 @@
 declare -A links=(
 ["DuckDuckGo"]="start.duckduckgo.com"
 ["Arch Linux"]="archlinux.org"
-["GitHub"]="github.com"
-["GitLab"]="gitlab.com"
+["GitHub"]="github.com/login"
+["GitLab"]="gitlab.com/"
 ["Creator"]="github.com/KungPaoChick"
-["Gmail"]="mail.google.com"
-["Reddit"]="reddit.com"
-["Linkedin"]="linkedin.com"
-["Messenger"]="messenger.com"
-["Facebook"]="facebook.com"
+["Gmail"]="mail.google.com/"
+["Reddit"]="reddit.com/login"
+["Linkedin"]="linkedin.com/login"
+["Facebook Messenger"]="messenger.com/login"
+["Facebook"]="facebook.com/login"
 ["YouTube"]="youtube.com"
 )
 

@@ -92,7 +92,7 @@ keys = [
 
     # dmenu
     Key(['mod1'], "F1",
-        lazy.spawn(f"j4-dmenu-desktop --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""),
+        lazy.spawn(f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""),
         desc="Launches dmenu desktop applications"
     ),
     Key([mod], "d",
