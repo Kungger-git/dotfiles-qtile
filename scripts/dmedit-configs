@@ -20,7 +20,7 @@ declare -a options=(
 )
 
 # creates the menu
-choice=$(printf '%s\n' "${options[@]}" | dmenu -c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium' -p 'Edit Config: ')
+choice=$(printf '%s\n' "${options[@]}" | sort -u | dmenu -c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium' -p 'Edit Config: ')
 
 # opens the selected config file with vim
 # exits otherwise
