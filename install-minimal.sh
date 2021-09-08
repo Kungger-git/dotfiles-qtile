@@ -140,7 +140,8 @@ ${BOLD}#########################################################################
     sed -i "s/kungger/$USER/g" $HOME/.gtkrc-2.0
 
     # compiles dmenu
-    if [[ -d $HOME/.config/dmenu ]]; then
+    if [[ ! -d $HOME/.config/dmenu ]]; then
+        git clone https://github.com/KungPaoChick/dmenu-kungger.git $HOME/.config/dmenu
         (cd $HOME/.config/dmenu; sudo make install)
     fi
 
