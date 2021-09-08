@@ -139,6 +139,11 @@ ${BOLD}#########################################################################
     # replaces username
     sed -i "s/kungger/$USER/g" $HOME/.gtkrc-2.0
 
+    # compiles dmenu
+    if [[ -d $HOME/.config/dmenu ]]; then
+        (cd $HOME/.config/dmenu; sudo make install)
+    fi
+
     # installs fonts for bar
     FDIR="$HOME/.local/share/fonts"
     echo -e "\n${GREEN}${BOLD}[*] ${RESET}Installing fonts..."
