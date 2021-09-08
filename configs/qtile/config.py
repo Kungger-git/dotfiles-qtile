@@ -41,7 +41,7 @@ home_dir = os.path.expanduser("~")
 terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
 
 dmenu_conf = "-c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
-j4 = f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""
+j4 = f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run App:' {dmenu_conf}\""
 
 keys = [
     # Switch between windows
@@ -98,7 +98,7 @@ keys = [
         desc="Launches dmenu desktop applications"
     ),
     Key([mod], "d",
-        lazy.spawn(f"dmenu_run -p 'Run Command: ' {dmenu_conf}"),
+        lazy.spawn(f"dmenu_run -p 'Run Command:' {dmenu_conf}"),
         desc="Launches dmenu"
     ),
     Key([mod], "n",
@@ -191,6 +191,10 @@ widget_defaults = dict(
     fontsize=12,
     padding=5,
 )
+nerd_icon_defaults = dict(
+    font='Iosevka Nerd Font',
+    fontsize=15
+)
 extension_defaults = widget_defaults.copy()
 
 # colors for the bar/widgets/panel
@@ -257,7 +261,7 @@ def init_widgets_list():
             ),
             widget.TextBox(
                 font = "Iosevka Nerd Font",
-                fontsize = 12,
+                fontsize = 15,
                 text = "",
                 foreground = colors[8],
                 background = colors[1]
@@ -304,8 +308,6 @@ def init_widgets_list():
                 background = colors[1]
             ),
             widget.CurrentLayout(
-                font = "Source Code Pro Medium",
-                fontsize = 12,
                 foreground = colors[2],
                 background = colors[1] 
             ),
@@ -321,9 +323,7 @@ def init_widgets_list():
                 background = colors[1]
             ),
             widget.CPU(
-                font = "Source Code Pro Medium",
                 format = "{load_percent}%",
-                fontsize = 12,
                 foreground = colors[2],
                 background = colors[1],
                 update_interval = 2,
@@ -339,7 +339,6 @@ def init_widgets_list():
                 background = colors[1]
             ),
             widget.Memory(
-                font = "Source Code Pro Medium",
                 format = "{MemUsed:.0f}{mm}",
                 foreground = colors[2],
                 background = colors[1],
@@ -417,9 +416,7 @@ def init_widgets_list():
                 background = colors[1]
             ),
             widget.Clock(
-                font = "Source Code Pro Medium",
                 format = '%b %d-%Y',
-                fontsize = 12,
                 foreground = colors[2],
                 background = colors[1]
             ),
@@ -431,9 +428,7 @@ def init_widgets_list():
                 background = colors[1]
             ),
             widget.Clock(
-                font = "Source Code Pro Medium",
                 format = '%I:%M:%S %p',
-                fontsize = 12,
                 foreground = colors[2],
                 background = colors[1]
             ),

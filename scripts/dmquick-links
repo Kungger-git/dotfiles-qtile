@@ -18,7 +18,7 @@ declare -A links=(
 ["YouTube"]="youtube.com"
 )
 
-choice=$(printf '%s\n' "${!links[@]}" | sort -u | dmenu -c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium' -p 'Quick Links: ')
+choice=$(printf '%s\n' "${!links[@]}" | sort -u | dmenu -c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium' -p 'Quick Links:')
 
 # opens the link using default browser.. make sure you installed one :)
 if [ "$choice" ]; then
