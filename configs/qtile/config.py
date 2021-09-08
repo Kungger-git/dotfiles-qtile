@@ -39,7 +39,9 @@ from libqtile.lazy import lazy
 mod = "mod4"
 home_dir = os.path.expanduser("~")
 terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
-dmenu_conf = "-i -l 10 -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+
+dmenu_conf = "-c -i -l 10 -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+j4 = f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""
 
 keys = [
     # Switch between windows
@@ -92,7 +94,7 @@ keys = [
 
     # dmenu
     Key(['mod1'], "F1",
-        lazy.spawn(f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""),
+        lazy.spawn(j4),
         desc="Launches dmenu desktop applications"
     ),
     Key([mod], "d",
@@ -222,7 +224,7 @@ def init_widgets_list():
                 margin = 3,
                 mouse_callbacks = {
                     'Button1': lambda : qtile.cmd_spawn(
-                        f"dmenu_run -p 'Run: ' {dmenu_conf}"
+                        j4
                     ),
                     'Button3': lambda : qtile.cmd_spawn(
                         f'{terminal} -e vim {home_dir}/.config/qtile/config.py'
