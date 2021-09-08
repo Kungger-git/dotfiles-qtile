@@ -23,6 +23,7 @@ noto-fonts
 obs-studio
 papirus-icon-theme
 ranger
+scrot
 terminus-font
 thunar
 udiskie

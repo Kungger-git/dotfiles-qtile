@@ -128,6 +128,10 @@ keys = [
     Key(["control", "mod1"], "l", lazy.spawn('lock'), desc="Locks Screen"),
     Key(["control", "mod1"], "s", lazy.spawn('xfce4-settings-manager'), desc="Launches Settings"),
     
+    # Screenshot Keys
+    Key([mod], "p", lazy.spawn("scrot 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"), desc="Takes a Screenshot"),
+    Key([mod, 'mod1'], "p", lazy.spawn("scrot -d 5 'Screenshot_%Y-%m-%d-%S_$wx$h.png' -e 'mv $f $$(xdg-user-dir PICTURES) ; viewnior $$(xdg-user-dir PICTURES)/$f'"), desc="Takes a Screenshot in 5 seconds"),
+
     # launch applications
     Key([mod, "shift"], "w", lazy.spawn('xdg-open https://start.duckduckgo.com'), desc="Launches Default Web Browser"),
     Key([mod, "shift"], "f", lazy.spawn('thunar'), desc="Launches Pcmanfm File Manager"),
