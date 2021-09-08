@@ -40,7 +40,7 @@ mod = "mod4"
 home_dir = os.path.expanduser("~")
 terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritty.yml"
 
-dmenu_conf = "-c -i -l 10 -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
+dmenu_conf = "-c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
 j4 = f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run Application:' {dmenu_conf}\""
 
 keys = [
