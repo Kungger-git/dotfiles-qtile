@@ -26,6 +26,8 @@
 
 from typing import List  # noqa: F401
 
+from scripts import storage
+
 import os
 import subprocess
 from libqtile import qtile
@@ -42,6 +44,8 @@ terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritt
 
 dmenu_conf = "-c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
 j4 = f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run App:' {dmenu_conf}\""
+
+disks = storage.diskspace()
 
 keys = [
     # Switch between windows
@@ -354,13 +358,19 @@ def init_widgets_list():
                 foreground = colors[7],
                 background = colors[1]
             ),
-            widget.HDDGraph(
-                type = 'box',
+            #widget.HDDGraph(
+            #    type = 'box',
+            #    foreground = colors[2],
+            #    background = colors[1],
+            #    mouse_callbacks = {
+            #        'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
+            #    }
+            #),
+            widget.GenPollText(
                 foreground = colors[2],
                 background = colors[1],
-                mouse_callbacks = {
-                    'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
-                }
+                update_interval = 5,
+                func = lambda: disks['FreeSpace']
             ),
             widget.Sep(
                 linewidth = 3,
@@ -373,7 +383,6 @@ def init_widgets_list():
                 foreground = colors[8],
                 background = colors[1]
             ),
-            # 
             widget.GenPollText(
                 foreground = colors[2],
                 background = colors[1],
