@@ -9,12 +9,12 @@ def format_bytes(num_bytes):
     while num_bytes > power:
         num_bytes /= power
         n += 1
-    return f"{round(num_bytes, 2)}{power_labels[n]}b"
+    return f"{round(num_bytes, 2)}{power_labels[n]}"
 
-def diskspace():
+def diskspace(mode):
     total, used, free = shutil.disk_usage('/')
     data_disk = {
-        'DiskUsage': f'{format_bytes(total)} / {format_bytes(free)}',
-        'FreeSpace': f'{format_bytes(used)}'
+        'DiskUsage': f'{format_bytes(used)} / {format_bytes(total)}',
+        'FreeSpace': f'{format_bytes(free)}'
     }
-    return data_disk
+    return data_disk[mode]

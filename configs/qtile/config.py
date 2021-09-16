@@ -45,8 +45,6 @@ terminal = f"alacritty --config-file {home_dir}/.config/qtile/alacritty/alacritt
 dmenu_conf = "-c -i -l 10 -nb '#2C2439' -sb '#3D3250' -sf '#C4C7C5' -fn 'Source Code Pro Medium'"
 j4 = f"j4-dmenu-desktop --no-generic --term='{terminal}' --dmenu=\"dmenu -p 'Run App:' {dmenu_conf}\""
 
-disks = storage.diskspace()
-
 keys = [
     # Switch between windows
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -370,7 +368,10 @@ def init_widgets_list():
                 foreground = colors[2],
                 background = colors[1],
                 update_interval = 5,
-                func = lambda: disks['FreeSpace']
+                func = lambda: storage.diskspace('FreeSpace'),
+                mouse_callbacks = {
+                    'Button1': lambda : qtile.cmd_spawn(f"{terminal} -e gtop")
+                }
             ),
             widget.Sep(
                 linewidth = 3,
